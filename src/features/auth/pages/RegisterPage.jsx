@@ -43,11 +43,11 @@ function RegisterPage() {
         <p className="text-sm text-slate-500">Buat akun baru Anda.</p>
       </div>
       <div>
-        <label htmlFor="name" className="mb-1 block text-sm font-medium">
+        <label htmlFor="register-name-input" className="mb-1 block text-sm font-medium">
           Nama
         </label>
         <input
-          id="name"
+          id="register-name-input"
           type="text"
           value={name}
           onChange={onNameChange}
@@ -56,11 +56,11 @@ function RegisterPage() {
         />
       </div>
       <div>
-        <label htmlFor="email" className="mb-1 block text-sm font-medium">
+        <label htmlFor="register-email-input" className="mb-1 block text-sm font-medium">
           Email
         </label>
         <input
-          id="email"
+          id="register-email-input"
           type="email"
           value={email}
           onChange={onEmailChange}
@@ -69,11 +69,11 @@ function RegisterPage() {
         />
       </div>
       <div>
-        <label htmlFor="password" className="mb-1 block text-sm font-medium">
+        <label htmlFor="register-password-input" className="mb-1 block text-sm font-medium">
           Kata Sandi
         </label>
         <input
-          id="password"
+          id="register-password-input"
           type="password"
           value={password}
           onChange={onPasswordChange}
@@ -82,6 +82,7 @@ function RegisterPage() {
         />
       </div>
       <button
+        id="register-submit-button"
         type="submit"
         disabled={loading}
         className="w-full rounded-lg bg-indigo-600 py-2.5 font-semibold text-white hover:bg-indigo-700 disabled:opacity-60"

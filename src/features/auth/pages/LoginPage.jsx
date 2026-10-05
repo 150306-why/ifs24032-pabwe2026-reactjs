@@ -38,11 +38,11 @@ function LoginPage() {
         </p>
       </div>
       <div>
-        <label htmlFor="email" className="mb-1 block text-sm font-medium">
+        <label htmlFor="login-email-input" className="mb-1 block text-sm font-medium">
           Email
         </label>
         <input
-          id="email"
+          id="login-email-input"
           type="email"
           value={email}
           onChange={onEmailChange}
@@ -51,11 +51,11 @@ function LoginPage() {
         />
       </div>
       <div>
-        <label htmlFor="password" className="mb-1 block text-sm font-medium">
+        <label htmlFor="login-password-input" className="mb-1 block text-sm font-medium">
           Kata Sandi
         </label>
         <input
-          id="password"
+          id="login-password-input"
           type="password"
           value={password}
           onChange={onPasswordChange}
@@ -64,6 +64,7 @@ function LoginPage() {
         />
       </div>
       <button
+        id="login-submit-button"
         type="submit"
         disabled={loading}
         className="w-full rounded-lg bg-indigo-600 py-2.5 font-semibold text-white hover:bg-indigo-700 disabled:opacity-60"
