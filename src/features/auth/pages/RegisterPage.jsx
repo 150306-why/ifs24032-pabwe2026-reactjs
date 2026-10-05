@@ -39,8 +39,8 @@ function RegisterPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <h2 className="text-2xl font-bold">Daftar</h2>
-        <p className="text-sm text-slate-500">Buat akun baru Anda.</p>
+        <h1 className="text-2xl font-bold">Daftar</h1>
+        <p className="text-sm text-slate-600">Buat akun baru Anda.</p>
       </div>
       <div>
         <label htmlFor="register-name-input" className="mb-1 block text-sm font-medium">
@@ -89,7 +89,7 @@ function RegisterPage() {
       >
         {loading ? "Memproses..." : "Daftar"}
       </button>
-      <p className="text-center text-sm text-slate-500">
+      <p className="text-center text-sm text-slate-600">
         Sudah punya akun?{" "}
         <Link to="/auth/login" className="font-semibold text-indigo-600">
           Masuk

@@ -14,7 +14,7 @@ function UsersPage() {
     <div className="space-y-4">
       <h1 className="text-2xl font-bold">Daftar Pengguna</h1>
       {users.length === 0 ? (
-        <p className="text-slate-500">Belum ada pengguna.</p>
+        <p className="text-slate-600">Belum ada pengguna.</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {users.map((user) => (
@@ -35,7 +35,7 @@ function UsersPage() {
               )}
               <div className="min-w-0">
                 <p className="truncate font-semibold">{user.name}</p>
-                <p className="truncate text-sm text-slate-500">{user.email}</p>
+                <p className="truncate text-sm text-slate-600">{user.email}</p>
               </div>
             </div>
           ))}

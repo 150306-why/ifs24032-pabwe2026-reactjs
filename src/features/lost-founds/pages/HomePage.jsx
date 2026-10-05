@@ -32,9 +32,9 @@ export function normalizeStats(data) {
 function StatList({ title, items }) {
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4">
-      <h3 className="mb-3 font-semibold">{title}</h3>
+      <h2 className="mb-3 font-semibold">{title}</h2>
       {items.length === 0 ? (
-        <p className="text-sm text-slate-500">Belum ada data.</p>
+        <p className="text-sm text-slate-600">Belum ada data.</p>
       ) : (
         <ul className="space-y-1 text-sm">
           {items.map((item) => (
@@ -129,7 +129,7 @@ function HomePage() {
             key={metric.label}
             className="rounded-xl border border-slate-200 bg-white p-4"
           >
-            <p className="text-sm text-slate-500">{metric.label}</p>
+            <p className="text-sm text-slate-600">{metric.label}</p>
             <p data-testid={`metric-${metric.label}`} className="text-2xl font-extrabold">
               {metric.value}
             </p>
@@ -146,7 +146,7 @@ function HomePage() {
 
       <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200 bg-white p-4">
         <div className="relative min-w-[200px] flex-1">
-          <IconSearch size={16} className="absolute left-3 top-3 text-slate-400" />
+          <IconSearch size={16} className="absolute left-3 top-3 text-slate-600" />
           <input
             aria-label="Cari laporan"
             placeholder="Cari judul atau deskripsi..."
@@ -191,9 +191,9 @@ function HomePage() {
       </div>
 
       {isLoading ? (
-        <p className="text-slate-500">Memuat data...</p>
+        <p className="text-slate-600">Memuat data...</p>
       ) : visible.length === 0 ? (
-        <p className="text-slate-500">Tidak ada laporan.</p>
+        <p className="text-slate-600">Tidak ada laporan.</p>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map((item) => (
@@ -219,11 +219,11 @@ function HomePage() {
                     </span>
                   )}
                 </div>
-                <h3 className="font-bold">{item.title}</h3>
+                <h2 className="font-bold">{item.title}</h2>
                 <p className="line-clamp-2 text-sm text-slate-600">
                   {item.description}
                 </p>
-                <p className="mt-2 text-xs text-slate-400">
+                <p className="mt-2 text-xs text-slate-600">
                   {formatDate(item.created_at)}
                 </p>
               </div>

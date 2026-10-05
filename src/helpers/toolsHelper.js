@@ -1,6 +1,11 @@
-import Swal from "sweetalert2";
+// sweetalert2 dimuat lazy agar tidak membebani bundle awal (Reduce unused JavaScript)
+async function getSwal() {
+  const module = await import("sweetalert2");
+  return module.default;
+}
 
-export function showSuccessDialog(message) {
+export async function showSuccessDialog(message) {
+  const Swal = await getSwal();
   return Swal.fire({
     icon: "success",
     title: "Berhasil",
@@ -9,7 +14,8 @@ export function showSuccessDialog(message) {
   });
 }
 
-export function showErrorDialog(message) {
+export async function showErrorDialog(message) {
+  const Swal = await getSwal();
   return Swal.fire({
     icon: "error",
     title: "Gagal",
@@ -18,7 +24,8 @@ export function showErrorDialog(message) {
   });
 }
 
-export function showWarningDialog(message) {
+export async function showWarningDialog(message) {
+  const Swal = await getSwal();
   return Swal.fire({
     icon: "warning",
     title: "Perhatian",
@@ -31,6 +38,7 @@ export async function showConfirmDialog(
   message,
   confirmText = "Ya, lanjutkan"
 ) {
+  const Swal = await getSwal();
   const result = await Swal.fire({
     icon: "question",
     title: "Konfirmasi",

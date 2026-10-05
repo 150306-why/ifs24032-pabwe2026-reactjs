@@ -32,8 +32,8 @@ function LoginPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <h2 className="text-2xl font-bold">Masuk</h2>
-        <p className="text-sm text-slate-500">
+        <h1 className="text-2xl font-bold">Masuk</h1>
+        <p className="text-sm text-slate-600">
           Silakan masuk untuk melanjutkan.
         </p>
       </div>
@@ -71,7 +71,7 @@ function LoginPage() {
       >
         {loading ? "Memproses..." : "Masuk"}
       </button>
-      <p className="text-center text-sm text-slate-500">
+      <p className="text-center text-sm text-slate-600">
         Belum punya akun?{" "}
         <Link to="/auth/register" className="font-semibold text-indigo-600">
           Daftar

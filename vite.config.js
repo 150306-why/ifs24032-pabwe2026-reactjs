@@ -3,17 +3,45 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import process from "process";
 
+// Menyisipkan CSS hasil build langsung ke index.html agar tidak ada
+// stylesheet yang memblokir render (Eliminate render-blocking resources).
+function inlineCssPlugin() {
+  return {
+    name: "inline-css",
+    apply: "build",
+    transformIndexHtml: {
+      order: "post",
+      handler(html, ctx) {
+        if (!ctx.bundle) return html;
+        return html.replace(
+          /<link rel="stylesheet"[^>]*href="([^"]+\.css)"[^>]*>/g,
+          (tag, href) => {
+            const key = href.replace(/^\//, "");
+            const asset = ctx.bundle[key];
+            if (!asset || asset.type !== "asset") return tag;
+            delete ctx.bundle[key];
+            return `<style>${asset.source}</style>`;
+          }
+        );
+      },
+    },
+  };
+}
+
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    plugins: [react(), tailwindcss()],
+    plugins: [react(), tailwindcss(), inlineCssPlugin()],
     server: {
       port: Number(env.APP_PORT) || 3000,
     },
     preview: {
       port: Number(env.APP_PORT) || 3000,
+    },
+    build: {
+      cssCodeSplit: false,
     },
     define: {
       DELCOM_BASEURL: JSON.stringify(

@@ -6,16 +6,25 @@
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lost & Founds</title>
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <meta name="description"
+    content="Lost & Founds: laporkan barang hilang atau temuan dan bantu mempertemukan barang dengan pemiliknya." />
+  <meta name="theme-color" content="#4f46e5" />
+  <!-- Google Fonts: Plus Jakarta Sans (dimuat non-blocking agar tidak menghambat first paint) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
-    rel="stylesheet" />
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet" />
+  </noscript>
 </head>
 
 <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
-  <div id="root"></div>
+  <!-- Shell statis: tampil seketika sebelum JavaScript selesai dimuat, diganti React saat siap -->
+  <div id="root"><p style="padding:1rem;color:#475569;font-family:system-ui,sans-serif">Memuat aplikasi...</p></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 

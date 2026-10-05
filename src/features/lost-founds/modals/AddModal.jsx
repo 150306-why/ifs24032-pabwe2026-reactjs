@@ -46,7 +46,7 @@ function AddModal({ open, onClose, onSuccess }) {
         className="w-full max-w-md space-y-4 rounded-2xl bg-white p-6 shadow-xl"
       >
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-bold">Tambah Laporan</h3>
+          <h2 className="text-lg font-bold">Tambah Laporan</h2>
           <button type="button" aria-label="Tutup" onClick={onClose}>
             <IconX size={20} />
           </button>

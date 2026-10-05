@@ -35,13 +35,13 @@ function DetailPage() {
   }
 
   if (isLoading) {
-    return <p className="text-slate-500">Memuat data...</p>;
+    return <p className="text-slate-600">Memuat data...</p>;
   }
 
   if (!lostFound) {
     return (
       <div className="space-y-3">
-        <p className="text-slate-500">Laporan tidak ditemukan.</p>
+        <p className="text-slate-600">Laporan tidak ditemukan.</p>
         <Link to="/" className="font-semibold text-indigo-600">
           Kembali ke beranda
         </Link>
@@ -58,7 +58,7 @@ function DetailPage() {
           className="max-h-96 w-full rounded-xl object-contain bg-slate-100"
         />
       ) : (
-        <div className="flex h-48 items-center justify-center rounded-xl bg-slate-100 text-slate-400">
+        <div className="flex h-48 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
           Tidak ada foto
         </div>
       )}
@@ -79,7 +79,7 @@ function DetailPage() {
       </div>
 
       <h1 className="text-2xl font-bold">{lostFound.title}</h1>
-      <p className="text-sm text-slate-500">
+      <p className="text-sm text-slate-600">
         Dilaporkan oleh{" "}
         <span className="font-semibold">
           {lostFound.user ? lostFound.user.name : "-"}
