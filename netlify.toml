@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# SPA: semua rute (mis. /auth/login) diarahkan ke index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
