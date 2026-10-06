@@ -55,9 +55,9 @@ describe("App routing", () => {
     expect(screen.getByRole("heading", { name: "Daftar" })).toBeInTheDocument();
   });
 
-  it("tanpa token rute dashboard mengalihkan ke login", () => {
+  it("tanpa token rute dashboard mengalihkan ke login", async () => {
     renderWithProviders(<App />, { route: "/users" });
-    expect(screen.getByRole("heading", { name: "Masuk" })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "Masuk" })).toBeInTheDocument();
   });
 
   it("dengan token: beranda", async () => {
