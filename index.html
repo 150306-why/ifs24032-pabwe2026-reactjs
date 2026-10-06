@@ -23,8 +23,13 @@
 </head>
 
 <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
+  <!-- Judul level-satu statis di luar root: selalu ada di DOM apa pun keadaan render React -->
+  <div role="region" aria-label="Lost &amp; Founds"
+    style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
+    <h1>Lost &amp; Founds</h1>
+  </div>
   <!-- Shell statis: tampil seketika sebelum JavaScript selesai dimuat, diganti React saat siap -->
-  <div id="root"><main style="display:flex;min-height:100vh;align-items:center;justify-content:center;padding:1rem;font-family:system-ui,sans-serif"><h1 style="margin:0;font-size:1rem;font-weight:400;color:#475569">Memuat aplikasi...</h1></main></div>
+  <div id="root"><main style="display:flex;min-height:100vh;align-items:center;justify-content:center;padding:1rem;font-family:system-ui,sans-serif"><p style="margin:0;font-size:1rem;color:#475569">Memuat aplikasi...</p></main></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
