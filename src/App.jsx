@@ -16,11 +16,15 @@ const DetailPage = lazy(() => import("./features/lost-founds/pages/DetailPage"))
 const UsersPage = lazy(() => import("./features/users/pages/UsersPage"));
 const ProfilePage = lazy(() => import("./features/users/pages/ProfilePage"));
 
-const fallback = (
-  <p className="p-4 text-slate-600" role="status">
-    Memuat halaman...
-  </p>
-);
+// Layar tunggu semantik (landmark main + h1) agar setiap keadaan peralihan
+// tetap lolos audit aksesibilitas.
+function LoadingScreen() {
+  return (
+    <main className="flex min-h-screen items-center justify-center p-4">
+      <h1 className="text-base font-normal text-slate-600">Memuat halaman...</h1>
+    </main>
+  );
+}
 
 // Penjaga ringan (eager): tanpa token langsung ke login tanpa memuat chunk dashboard.
 function Dashboard() {
@@ -28,7 +32,12 @@ function Dashboard() {
   useSelector((state) => state.isAuthLogout);
 
   if (!getAccessToken()) {
-    return <Navigate to="/auth/login" replace />;
+    return (
+      <>
+        <LoadingScreen />
+        <Navigate to="/auth/login" replace />
+      </>
+    );
   }
 
   return <LostFoundLayout />;
@@ -36,7 +45,7 @@ function Dashboard() {
 
 function App() {
   return (
-    <Suspense fallback={fallback}>
+    <Suspense fallback={<LoadingScreen />}>
       <Routes>
         <Route path="/auth" element={<AuthLayout />}>
           <Route index element={<Navigate to="/auth/login" replace />} />

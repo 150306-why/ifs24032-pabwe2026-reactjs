@@ -13,6 +13,9 @@ function inlineCssPlugin() {
       order: "post",
       handler(html, ctx) {
         if (!ctx.bundle) return html;
+        // Tag penutup </body></html> bersifat opsional di HTML. Tanpa </body>,
+        // Netlify tidak menyuntikkan skrip Drawer (/.netlify/scripts/hud) ke halaman.
+        html = html.replace(/\s*<\/body>\s*<\/html>\s*$/i, "\n");
         return html.replace(
           /<link rel="stylesheet"[^>]*href="([^"]+\.css)"[^>]*>/g,
           (tag, href) => {
