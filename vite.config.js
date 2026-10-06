@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import process from "process";
+import prerenderLoginShellPlugin from "./prerender/plugin.js";
 
 // Menyisipkan CSS hasil build langsung ke index.html agar tidak ada
 // stylesheet yang memblokir render (Eliminate render-blocking resources).
@@ -13,6 +14,17 @@ function inlineCssPlugin() {
       order: "post",
       handler(html, ctx) {
         if (!ctx.bundle) return html;
+        // Preload font self-host agar teks langsung memakai Plus Jakarta Sans
+        // tanpa menunggu CSS selesai diparse (menghindari font swap & layout shift).
+        const font = Object.keys(ctx.bundle).find((name) =>
+          /plus-jakarta-sans-latin-wght-normal.*\.woff2$/.test(name)
+        );
+        if (font) {
+          html = html.replace(
+            "</head>",
+            `<link rel="preload" href="/${font}" as="font" type="font/woff2" crossorigin />\n</head>`
+          );
+        }
         // Tag penutup </body></html> bersifat opsional di HTML. Tanpa </body>,
         // Netlify tidak menyuntikkan skrip Drawer (/.netlify/scripts/hud) ke halaman.
         html = html.replace(/\s*<\/body>\s*<\/html>\s*$/i, "\n");
@@ -36,7 +48,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
 
   return {
-    plugins: [react(), tailwindcss(), inlineCssPlugin()],
+    plugins: [prerenderLoginShellPlugin(), react(), tailwindcss(), inlineCssPlugin()],
     server: {
       port: Number(env.APP_PORT) || 3000,
     },

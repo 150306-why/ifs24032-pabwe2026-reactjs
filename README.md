@@ -22,3 +22,14 @@ npm run build
 ## Catatan
 - Bentuk respons endpoint statistik tidak terdokumentasi di soal; ditampilkan
   lewat `normalizeStats` (HomePage.jsx) yang menerima array / objek berisi array.
+
+## Catatan optimasi Lighthouse
+- **Shell login pra-render**: `prerender/` merender halaman login (komponen React asli) ke
+  `index.html` saat `npm run build`, sehingga LCP terjadi pada cat HTML pertama, bukan
+  menunggu JavaScript. Skrip kecil di `<head>` mengarahkan pengunjung tanpa token dari `/`
+  ke `/auth/login` (tanpa reload) sebelum first paint.
+- **Font self-host**: Plus Jakarta Sans dari `@fontsource-variable/plus-jakarta-sans`
+  (subset latin) + `preload`. Tidak ada request ke Google Fonts.
+- **Badge "Powered by Netlify"**: skrip `/.netlify/scripts/hud` disuntikkan Netlify di edge,
+  bukan dari kode ini. Matikan lewat Netlify → *Project configuration → General →
+  Powered by Netlify badge*. Skrip itu satu-satunya sumber audit "Use efficient cache lifetimes".

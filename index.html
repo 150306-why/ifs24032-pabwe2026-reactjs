@@ -9,17 +9,29 @@
   <meta name="description"
     content="Lost & Founds: laporkan barang hilang atau temuan dan bantu mempertemukan barang dengan pemiliknya." />
   <meta name="theme-color" content="#4f46e5" />
-  <!-- Google Fonts: Plus Jakarta Sans (dimuat non-blocking agar tidak menghambat first paint) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet" />
-  </noscript>
+  <!--
+    Font Plus Jakarta Sans di-host sendiri (lihat src/index.css) dan di-preload oleh
+    vite.config.js, jadi tidak ada request ke Google Fonts.
+
+    Skrip kecil ini berjalan sebelum first paint: pengunjung tanpa token yang membuka
+    "/" langsung diarahkan ke /auth/login (tanpa reload) dan melihat shell halaman login.
+  -->
+  <script>
+    (function () {
+      try {
+        var p = location.pathname.replace(/\/+$/, "") || "/";
+        if (!localStorage.getItem("accessToken") && (p === "/" || p === "/auth" || p === "/auth/login")) {
+          if (p !== "/auth/login") history.replaceState(null, "", "/auth/login" + location.search + location.hash);
+          document.documentElement.setAttribute("data-shell", "login");
+        }
+      } catch (e) { /* localStorage tidak tersedia: tampilkan shell umum */ }
+    })();
+  </script>
+  <style>
+    #shell-login { display: none; }
+    html[data-shell="login"] #shell-login { display: block; }
+    html[data-shell="login"] #shell-generic { display: none; }
+  </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 font-sans antialiased min-h-screen">
@@ -29,7 +41,7 @@
     <h1>Lost &amp; Founds</h1>
   </div>
   <!-- Shell statis: tampil seketika sebelum JavaScript selesai dimuat, diganti React saat siap -->
-  <div id="root"><main style="display:flex;min-height:100vh;align-items:center;justify-content:center;padding:1rem;font-family:system-ui,sans-serif"><p style="margin:0;font-size:1rem;color:#475569">Memuat aplikasi...</p></main></div>
+  <div id="root"><div id="shell-login"><!--prerender-login--></div><main id="shell-generic" style="display:flex;min-height:100vh;align-items:center;justify-content:center;padding:1rem;font-family:system-ui,sans-serif"><p style="margin:0;font-size:1rem;color:#475569">Memuat aplikasi...</p></main></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
