@@ -32,7 +32,7 @@ function LoginPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Masuk</h1>
+        <h2 className="text-2xl font-bold">Masuk</h2>
         <p className="text-sm text-slate-600">
           Silakan masuk untuk melanjutkan.
         </p>

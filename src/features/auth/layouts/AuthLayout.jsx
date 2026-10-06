@@ -31,6 +31,7 @@ function AuthLayout() {
         </p>
       </aside>
       <main className="flex items-center justify-center p-6">
+        <h1 className="sr-only">Aplikasi Lost &amp; Founds</h1>
         <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
           <Outlet />
         </div>

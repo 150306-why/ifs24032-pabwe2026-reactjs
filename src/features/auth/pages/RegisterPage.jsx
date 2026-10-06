@@ -39,7 +39,7 @@ function RegisterPage() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold">Daftar</h1>
+        <h2 className="text-2xl font-bold">Daftar</h2>
         <p className="text-sm text-slate-600">Buat akun baru Anda.</p>
       </div>
       <div>

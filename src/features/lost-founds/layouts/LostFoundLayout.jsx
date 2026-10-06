@@ -31,7 +31,7 @@ function LostFoundLayout() {
   if (!isProfile) {
     return (
       <main className="flex min-h-screen items-center justify-center text-slate-600">
-        Memuat sesi...
+        <h1 className="font-normal">Memuat sesi...</h1>
       </main>
     );
   }
